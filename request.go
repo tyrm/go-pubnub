@@ -147,15 +147,7 @@ func executeRequest(opts endpoint) ([]byte, StatusResponse, error) {
 		req = setRequestContext(req, ctx)
 	}
 
-	var client *http.Client
-	switch opts := opts.(type) {
-	case *subscribeOpts:
-		opts.config().Log.Println("request using subscribe client")
-		client = opts.subscribeClient()
-	default:
-		opts.config().Log.Println("request using non subscribe client")
-		client = opts.client()
-	}
+	client := opts.client()
 
 	startTimestamp := time.Now()
 

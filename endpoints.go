@@ -25,7 +25,6 @@ type endpoint interface {
 	jobQueue() chan *JobQItem
 	config() *Config
 	client() *http.Client
-	subscribeClient() *http.Client
 	context() Context
 	validate() error
 	buildPath() (string, error)
@@ -44,10 +43,6 @@ func (o *endpointOpts) config() *Config {
 
 func (o *endpointOpts) client() *http.Client {
 	return o.pubnub.GetClient()
-}
-
-func (o *endpointOpts) subscribeClient() *http.Client {
-	return o.pubnub.GetSubscribeClient()
 }
 
 func (o *endpointOpts) context() Context {
