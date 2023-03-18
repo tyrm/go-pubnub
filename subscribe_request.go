@@ -168,6 +168,7 @@ func (o *subscribeOpts) buildQuery() (*url.Values, error) {
 }
 
 func (o *subscribeOpts) client() *http.Client {
+	o.pubnub.Config.Log.Println("using subscribe client")
 	return o.pubnub.GetSubscribeClient()
 }
 
